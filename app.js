@@ -1,5 +1,5 @@
-// FX=false keeps the site calm: no cursor halo, text glow, tilt, ripples, magnetic buttons or letter-by-letter headings.
-const FX=false;
+// FX switches the interactive effects (cursor halo, text glow, tilt, ripples, magnetic buttons, letter-by-letter headings). Set to false for a calmer site.
+const FX=true;
 function videoGlowColor(category){if(category==='Sports')return '255,145,55';if(['Medical','Real Estate','Interior Design'].includes(category))return '156,255,180';return '65,135,255';}
 function makePlayIcon(){const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('aria-hidden','true');svg.setAttribute('focusable','false');const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d','M8 5.5v13l11-6.5z');path.setAttribute('fill','currentColor');svg.append(path);return svg;}
 let playerOpener=null;let films=[],format='All',search='',currentFilmId=null;const grid=document.querySelector('#projects'),industry=document.querySelector('#category'),player=document.querySelector('#player');
