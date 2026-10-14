@@ -278,3 +278,8 @@ html body .section-head p br{display:none}
 html,body{overflow-x:clip}
 #home .landscape-filmstrip{width:100vw;max-width:none;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
 #home.hero{overflow:visible}
+
+/* v3.4: simpler background behind the work/videos section — no photo, no timeline pattern, no moving blue spots. */
+#work.section::before,#work.section::after{content:none!important;background:none!important;animation:none!important}
+#work .editing-backdrop{display:none!important}
+#work.section{background:linear-gradient(180deg,#0b0c14 0%,var(--bg) 40%,var(--bg) 100%)}
