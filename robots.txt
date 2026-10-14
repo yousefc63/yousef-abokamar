@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://yousefc63.github.io/yousef-abokamar/sitemap.xml
