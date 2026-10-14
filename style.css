@@ -283,3 +283,41 @@ html,body{overflow-x:clip}
 #work.section::before,#work.section::after{content:none!important;background:none!important;animation:none!important}
 #work .editing-backdrop{display:none!important}
 #work.section{background:linear-gradient(180deg,#0b0c14 0%,var(--bg) 40%,var(--bg) 100%)}
+
+/* v4: one combined edit sequence at the top of the work section */
+.master-timeline{margin:4px 0 56px;padding-bottom:16px}
+.master-scroller{overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:#766aff55 transparent;padding-bottom:6px}
+.master-lane{--playhead:3%;position:relative;min-width:max(100%,1500px)}
+.master-ruler{margin-bottom:12px}
+.master-segments{display:flex;gap:14px}
+.master-segment{min-width:0;display:flex;flex-direction:column;gap:7px}
+.master-segment-name{font-size:9px;letter-spacing:1px;color:#a09aac;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-left:2px;border-left:2px solid #766aff88;padding-left:7px}
+.master-segment-name:hover{color:var(--fg)}
+.master-segment .modern-clips{display:flex;gap:6px}
+.master-segment .modern-clip{flex:1 1 0;min-width:0;height:64px}
+.master-timeline .edit-playhead{top:30px;bottom:0}
+@media(max-width:650px){.master-lane{min-width:1300px}.master-segment .modern-clips{display:flex}.master-segment .modern-clip{height:58px}}
+
+/* v4: reels get vertical cards */
+.category-group.has-reels .category-cards{grid-template-columns:repeat(4,minmax(0,1fr))}
+.category-group.has-reels .project[data-orientation=landscape]{grid-column:span 2}
+.category-cards .project[data-orientation=portrait] .poster,.projects.cinema .category-cards .project[data-orientation=portrait] .poster{aspect-ratio:9/16!important}
+.category-cards .project[data-orientation=portrait] .poster>img:not(.video-watermark){object-fit:cover;background:none}
+.category-cards .project[data-orientation=landscape] .poster,.projects.cinema .category-cards .project[data-orientation=landscape] .poster{aspect-ratio:16/9!important}
+.category-cards .project[data-orientation=landscape] .poster>img:not(.video-watermark){object-fit:cover}
+.cinema .category-group.has-reels .category-cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:800px){.category-group.has-reels .category-cards,.cinema .category-group.has-reels .category-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:500px){.category-group.has-reels .category-cards,.cinema .category-group.has-reels .category-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 10px}.category-group.has-reels .project[data-orientation=landscape]{grid-column:1/-1}}
+
+/* v4: calmer motion and a readable name in the header */
+.cursor-halo,.background-mouse-glow{display:none!important}
+.brand>span{color:#a39cff!important}
+.category-group.has-reels .category-cards{align-items:start}
+.master-lane{min-width:max(100%,2560px)}
+.master-segment .modern-clip{min-width:116px}
+.master-timeline .timeline-strip-label>span::after{content:'  ·  SCROLL →';color:#766aff}
+@media(max-width:650px){.master-lane{min-width:2400px}}
+/* v4: headings appear at once; sections use one short, gentle fade */
+.text-char,.text-word{filter:none!important;opacity:1!important;transform:none!important;translate:none!important;transition:none!important;animation:none!important}
+.reveal-ready{filter:none!important;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease!important}
+.reveal-ready.visible{transform:none}
