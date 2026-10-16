@@ -1,5 +1,13 @@
 // FX switches the interactive effects (cursor halo, text glow, tilt, ripples, magnetic buttons, letter-by-letter headings). Set to false for a calmer site.
 const FX=true;
+// Replace text arrows (↗ ↓ ↑ → ← ↔) with drawn SVG icons: Rostex has no arrow glyphs, so phones fell back to a thin system font.
+const ARROW_PATHS={'↗':'M7 17 17 7M8.5 7H17v8.5','↓':'M12 4.5v15M6 13.5l6 6 6-6','↑':'M12 19.5v-15M6 10.5l6-6 6 6','→':'M4.5 12h15M13.5 6l6 6-6 6','←':'M19.5 12h-15M10.5 6l-6 6 6 6','↔':'M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4'};
+const ARROW_RE=/[↗↓↑→←↔]/;
+function arrowIcon(ch){const s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox','0 0 24 24');s.setAttribute('class','ico-arrow');s.setAttribute('aria-hidden','true');s.setAttribute('focusable','false');const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',ARROW_PATHS[ch]);s.append(p);return s;}
+function arrowize(root){if(!root||root.nodeType!==1&&root.nodeType!==9)return;const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>ARROW_RE.test(n.nodeValue)&&!n.parentElement.closest('script,style,svg,title')?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT}),nodes=[];while(w.nextNode())nodes.push(w.currentNode);
+ nodes.forEach(n=>{const frag=document.createDocumentFragment();n.nodeValue.split(/([↗↓↑→←↔])/).forEach(part=>{if(!part)return;if(ARROW_PATHS[part])frag.append(arrowIcon(part));else frag.append(document.createTextNode(part));});n.replaceWith(frag);});}
+arrowize(document.body);
+new MutationObserver(list=>list.forEach(m=>m.addedNodes.forEach(n=>{if(n.nodeType===1)arrowize(n);else if(n.nodeType===3&&ARROW_RE.test(n.nodeValue)&&n.parentElement)arrowize(n.parentElement);}))).observe(document.body,{childList:true,subtree:true});
 function videoGlowColor(category){if(category==='Sports')return '255,145,55';if(['Medical','Real Estate','Interior Design'].includes(category))return '156,255,180';return '65,135,255';}
 function makePlayIcon(){const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('aria-hidden','true');svg.setAttribute('focusable','false');const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d','M8 5.5v13l11-6.5z');path.setAttribute('fill','currentColor');svg.append(path);return svg;}
 let playerOpener=null;let films=[],format='All',search='',currentFilmId=null;const grid=document.querySelector('#projects'),industry=document.querySelector('#category'),player=document.querySelector('#player');

@@ -314,5 +314,10 @@ html,body{overflow-x:clip}
 .category-group.has-reels .category-cards{align-items:start}
 .master-lane{min-width:max(100%,2560px)}
 .master-segment .modern-clip{min-width:116px}
-.master-timeline .timeline-strip-label>span::after{content:'  ·  SCROLL →';color:#766aff}
+.master-timeline .timeline-strip-label>span::after{content:'  ·  SCROLL';color:#766aff;padding-right:1.5em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23766aff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 12h15M13.5 6l6 6-6 6'/%3E%3C/svg%3E") right center/1.2em no-repeat}
 @media(max-width:650px){.master-lane{min-width:2400px}}
+
+/* v4.1: drawn arrow icons replace text arrows */
+.ico-arrow{display:inline-block;width:1.05em;height:1.05em;vertical-align:-.17em;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none;overflow:visible}
+.nav-cta .ico-arrow,.pill .ico-arrow,.outline-button .ico-arrow{width:1.15em;height:1.15em;stroke-width:2.4}
+.social-platform b .ico-arrow{width:14px;height:14px}
